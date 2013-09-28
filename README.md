@@ -5,4 +5,4 @@ You can also use it to compare two different colors (which is why I made this ap
 
 # Demo
 
-[https://github.io/wallin/ncs2rgb](https://github.io/wallin/ncs2rgb)
+[http://wallin.github.io/ncs2rgb/](http://wallin.github.io/ncs2rgb/)
