@@ -1,0 +1,87 @@
+@charset "utf-8";
+@import 'compass';
+@import "compass/layout/stretching";
+
+@include global-reset;
+
+body {
+  background: #d4d4d4;
+  color: #666;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  text-align: center;
+  text-shadow: 1px 1px #DDD;
+}
+
+.dark {
+  color: #ddd;
+  text-shadow: 1px 1px #000;
+  .ncs input {
+    border-bottom: 2px solid #fff;
+  }
+
+}
+
+* {
+  outline: none;
+}
+
+.close {
+  color: inherit;
+  font-size: 36px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.ncs {
+  font-size: 48px;
+  margin-top: 200px;
+  input{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #666;
+    color: inherit;
+    font-size: 48px;
+    text-transform: uppercase;
+    text-shadow: inherit;
+    width: 280px;
+  }
+}
+
+.sheet {
+  background-color: #ccc;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.warning {
+  display: none;
+  font-size: 14px;
+  color: inherit;
+}
+
+#main {
+  @include transition(width 0.3s ease-in-out);
+  width: 100%;
+  z-index: 10;
+}
+#second {
+  @include transition(opacity 0.3s ease-in-out);
+  right: 0;
+  width: 50%;
+  @include opacity(0);
+}
+.compare {
+  #main {
+    width: 50%;
+    .close {
+      display: none;
+    }
+  }
+  #second {
+    @include opacity(1);
+  }
+}
