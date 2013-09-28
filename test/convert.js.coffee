@@ -12,6 +12,10 @@ describe "Convert", ->
     it 'converts 1500-N to 0, 0, 85', ->
       expect(ncs2hsv('1500-N')).toEqual [0, 0, 85]
 
+    it 'throws an error for 18240-Y58G', ->
+      fn = -> ncs2hsv('18240-Y58G')
+      expect(fn).toThrow()
+
   describe 'hsv2rgb', ->
     it 'converts [96, 60, 85] to [139, 217, 87]', ->
       expect(hsv2rgb(96, 60, 85)).toEqual([139, 217, 87])

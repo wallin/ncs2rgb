@@ -1,4 +1,4 @@
-ncsRegex = /(\d{2})(\d{2})\-([bgryn])(\S*)/i
+ncsRegex = /^(\d{2})(\d{2})\-([bgryn])(\S*)/i
 ncsRegexHue = /(\d{2})([bgry])/i
 
 hueMap =
