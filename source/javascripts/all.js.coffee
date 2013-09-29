@@ -37,10 +37,8 @@ $('.ncs input').keyup ->
     hsv = ncs2hsv input
     rgb = hsv2rgb.apply window, hsv
     hex = dec2hex.apply(window, rgb)
-    sum = 0
-    sum += v for v in rgb
     $sheet
-    .toggleClass('dark', sum < (255*3 / 2))
+    .toggleClass('dark', hsv[2] < 60)
     .css('background-color': "##{hex.join('')}")
     $warning.hide()
   catch e
