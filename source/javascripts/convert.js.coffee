@@ -7,7 +7,7 @@ hueMap =
   g: 120
   b: 240
 
-window.ncs2hsv = (input) ->
+window.parseNcs = (input) ->
   input = input.toLowerCase()
   throw('Invalid NCS') unless parts = input.toLowerCase().match ncsRegex
   [v, s, p1, rest] = parts[1..]
@@ -17,11 +17,30 @@ window.ncs2hsv = (input) ->
     else
       throw('Invalid NCS')
 
+  [
+    parseInt(v, 10)
+    parseInt(s, 10)
+    p1
+    parseInt(h, 10)
+    p2
+  ]
+
+window.ncs2string = (ncs) ->
+  rv = [
+    zeroPad(ncs[0])
+    zeroPad(ncs[1])
+    '-'
+    ncs[2].toUpperCase()
+  ]
+  if ncs[3]? and ncs[4]?
+    rv.push(zeroPad(ncs[3]), ncs[4].toUpperCase())
+  rv.join('')
+
+window.ncs2hsv = (input) ->
+  [v, s, p1, h, p2] = parseNcs(input)
+
   if p1 is 'n'
     s = 0
-  else
-    s = parseInt(s, 10)
-  v = parseInt(v, 10)
   v = 100 - v
 
   if p1 and p2
@@ -73,9 +92,11 @@ window.hsv2rgb = (h, s, v) ->
       b = q
   [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)]
 
+window.zeroPad = (number) ->
+  number = number + ""
+  if number.length is 1 then "0#{number}" else "#{number}"
+
 window.dec2hex = (numbers...) ->
   for c in numbers
-    c = c.toString(16)
-    c = "0#{c}" if c.length is 1
-    c
+    zeroPad(c.toString(16))
 

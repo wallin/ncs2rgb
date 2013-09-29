@@ -1,5 +1,16 @@
 describe "Convert", ->
-  describe 'ncs2rgb', ->
+  describe 'parseNcs', ->
+    it 'parses 0510-G98Y into an array', ->
+      expect(parseNcs('0510-G98Y')).toEqual [5, 10, 'g', 98, 'y']
+
+  describe 'ncs2string', ->
+    it 'converts [5, 15, g, 50, r] to 0515-G50R', ->
+      expect(ncs2string([5, 15, 'g', 50, 'r'])).toBe '0515-G50R'
+
+    it 'converts [5, 15, g] to 0515-G', ->
+      expect(ncs2string([5, 15, 'g'])).toBe '0515-G'
+
+  describe 'ncs2hsv', ->
     it 'converts 0510-G98Y to 119, 10, 95', ->
       expect(ncs2hsv('0510-G98Y')).toEqual [119, 10, 95]
 
