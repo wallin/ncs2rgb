@@ -12,9 +12,9 @@ $('.ncs input').keydown (e) ->
   sign = if e.keyCode is 38 then 1 else -1
   caret = @selectionStart
   pos = switch caret
-    when 1, 2 then 0
-    when 3, 4 then 1
-    when 6, 7, 8, 9 then 3
+    when 0, 1 then 0
+    when 2, 3 then 1
+    when 6, 7 then 3
     else null
 
   newVal = (Math.ceil(ncs[pos]/5.0) * 5) + 5*sign
