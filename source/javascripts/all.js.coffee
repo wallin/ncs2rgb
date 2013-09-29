@@ -20,7 +20,7 @@ $('.ncs input').keyup ->
     $warning.show()
 
 
-$('.close').click -> $('body').toggleClass('compare')
+$('.toggle').click -> $('body').toggleClass('compare')
 
 # Calculate initial input
 $('.ncs input').keyup()
