@@ -86,3 +86,23 @@ body {
     @include opacity(1);
   }
 }
+
+#author {
+  bottom: 7px;
+  color: inherit;
+  font-size: 12px;
+  position: absolute;
+  right: 17px;
+  z-index: 20;
+  a {
+    border-bottom: 1px dotted;
+    color: inherit;
+    font-size: inherit;
+    font-weight: normal;
+    text-decoration: none;
+  }
+  span {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
