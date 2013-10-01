@@ -28,7 +28,20 @@ $('.ncs input').keydown (e) ->
   e.preventDefault()
   return false
 
-$('.ncs input').keyup ->
+setHash = do ->
+  timer = null
+  set = ->
+    c1 = $('#main input').val()
+    c2 = $('#second input').val()
+    return unless c1
+    hash = if $('body').hasClass('compare') and c2 then "#{c1}/#{c2}" else c1
+    window.location.hash = hash
+  (time = 1000)->
+    clearTimeout timer
+    timer = setTimeout set, time
+
+
+$.fn.setColor = ->
   input = $(@).val()
   return if input.length < 6
   $sheet = $(@).closest('.sheet')
@@ -41,11 +54,28 @@ $('.ncs input').keyup ->
     .toggleClass('dark', hsv[2] < 60)
     .css('background-color': "##{hex.join('')}")
     $warning.hide()
+    setHash()
   catch e
     $warning.show()
 
+$('.ncs input').keyup ->
+  $(@).setColor()
 
-$('.toggle').click -> $('body').toggleClass('compare')
+$(window).bind 'hashchange', (val) ->
+  colors = window.location.hash.replace('#', '').split('/')
+  return unless colors[0]
+  $field1 = $('#main input')
+  $field2 = $('#second input')
+  $('body').toggleClass('compare', !!colors[1])
+  return if colors[0] is $field1.val() and colors[1] is $field2.val()
+  $field1.val(colors[0]).setColor()
+  $field2.val(colors[1]).setColor() if colors[1]
+
+
+$('.toggle').click ->
+  $('body').toggleClass('compare')
+  setHash(0)
 
 # Calculate initial input
 $('.ncs input').keyup()
+$(window).trigger 'hashchange'
