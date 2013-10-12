@@ -67,9 +67,8 @@ $(window).bind 'hashchange', (val) ->
   $field1 = $('#main input')
   $field2 = $('#second input')
   $('body').toggleClass('compare', !!colors[1])
-  return if colors[0] is $field1.val() and colors[1] is $field2.val()
-  $field1.val(colors[0]).setColor()
-  $field2.val(colors[1]).setColor() if colors[1]
+  $field1.val(colors[0]).setColor() unless colors[0] is $field1.val()
+  $field2.val(colors[1]).setColor() if colors[1]? and colors[1] isnt $field2.val()
 
 
 $('.toggle').click ->
