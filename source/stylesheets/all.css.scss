@@ -8,6 +8,7 @@
 body {
   background: #d4d4d4;
   color: #666;
+  color: rgba(0,0,0,0.6);
   font-family: 'Lato', sans-serif;
   margin: 0;
   text-align: center;
@@ -16,9 +17,11 @@ body {
 
 .dark {
   color: #ddd;
+  color: rgba(255,255,255, 0.6);
   text-shadow: 1px 1px #000;
   .ncs input {
     border-bottom: 2px solid #fff;
+    border-bottom-color: rgba(255,255,255, 0.6);
   }
 
 }
@@ -43,6 +46,7 @@ body {
     background: none;
     border: none;
     border-bottom: 2px solid #666;
+    border-bottom-color: rgba(0,0,0,0.6);
     color: inherit;
     font-size: 48px;
     text-transform: uppercase;
